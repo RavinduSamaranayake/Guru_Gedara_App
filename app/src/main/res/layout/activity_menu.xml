@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    tools:context="com.example.user.guruforstudent.Menu">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnMain"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:cropToPadding="true"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/btnMsg"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnPro"
+        android:layout_alignParentStart="true"
+        android:background="@color/DarkKhaki"
+        android:text="@string/messages"
+        android:textColor="@color/Blue"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnIns"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnTime"
+        android:layout_alignParentStart="true"
+        android:background="@color/Aqua"
+        android:text="@string/institutes"
+        android:textColor="@color/Blue"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnAuth"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnIns"
+        android:layout_alignParentStart="true"
+        android:background="@color/Chartreuse"
+        android:text="@string/auth"
+        android:textColor="@color/Blue"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnTime"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnMsg"
+        android:layout_alignParentStart="true"
+        android:background="@color/Coral"
+        android:text="@string/timetable"
+        android:textColor="@color/Blue"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnPro"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/CornflowerBlue"
+        android:text="@string/profile"
+        android:textColor="@color/Blue"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnMain"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/btnAuth"
+        android:layout_alignParentStart="true"
+        android:background="@color/Crimson"
+        android:text="@string/main"
+        android:textColor="@color/Blue"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:text="@string/welcome_institute_name"
+        android:textColor="@color/Crimson"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+</RelativeLayout>

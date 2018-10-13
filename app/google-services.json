@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1075170598567",
+    "firebase_url": "https://gurugedara-46a73.firebaseio.com",
+    "project_id": "gurugedara-46a73",
+    "storage_bucket": "gurugedara-46a73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075170598567:android:029fa81e2ffa443f",
+        "android_client_info": {
+          "package_name": "com.example.user.guruforstudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075170598567-3d7ssf81hebv6pass0uapihl2gg94eki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.guruforstudent",
+            "certificate_hash": "117c1aa01b18e5a2073346591db93d66dcaceeab"
+          }
+        },
+        {
+          "client_id": "1075170598567-cm9qoggt01qsmtdcnqihm8g8tugflvc4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk5p2SiEvw5VBMCTMbuEpPA-uMzNQNtfE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075170598567-cm9qoggt01qsmtdcnqihm8g8tugflvc4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
