@@ -20,6 +20,8 @@ import static com.example.user.guruforstudent.Models.User.ps;
 public class teacher {
 
     static Connection con = null;
+    int teachId;
+    PreparedStatement ps3 = null;
     public teacher(){
         con = MyConnection.getconnection();
     }
@@ -84,6 +86,30 @@ public class teacher {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void getCurTeachId(){
+        User u = new User();
+        u.getCurIdCurLevel();
+        int crUid = u.curUid;
+        int crLevel = u.curUlevel;
+        if(crLevel == 3){
+            try {
+                ps3 = con.prepareStatement("SELECT `id` FROM `students` WHERE `user_id` = ?");
+                ps3.setInt(1, crUid);
+
+                ResultSet rs = ps3.executeQuery();
+                if (rs.next()) {
+                    this.teachId = rs.getInt(1);
+
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            this.teachId=0;
         }
     }
 }
