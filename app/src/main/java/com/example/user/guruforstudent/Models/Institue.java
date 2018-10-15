@@ -54,6 +54,35 @@ public class Institue {
 
         return  insName;
     }
+    public String getInsId(String name){
+        String insID = null;
+        String selectQuery = "SELECT `id` FROM `institutes` WHERE `name`=?";
+
+
+        try {
+            ps = con.prepareStatement(selectQuery);
+            ps.setString(1,name);
+            ResultSet rs = ps.executeQuery();
+            //insName.add("Hello");
+
+            if(rs.next()){
+                insID = rs.getString(1);
+
+            }
+            //con.close();
+
+        } catch (SQLException e) {
+            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            System.out.print(e.getMessage());
+        }
+
+
+
+
+
+
+        return  insID;
+    }
 
 
 

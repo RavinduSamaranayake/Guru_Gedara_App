@@ -98,7 +98,8 @@ import java.io.*;
             return ps;
 
         }
-        public void getCurIdCurLevel(){
+        public int getCurIdCurLevel(){
+            int ulevel=0;
             auth = FirebaseAuth.getInstance();
             String mail = auth.getCurrentUser().getEmail();
             try {
@@ -108,15 +109,15 @@ import java.io.*;
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     this.curUid = rs.getInt(1);
-                    this.curUlevel = rs.getInt(2);
+                    ulevel = rs.getInt(2);
+                    this.curUlevel = ulevel;
 
                 }
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
+            return ulevel;
         }
 
         //con.close();

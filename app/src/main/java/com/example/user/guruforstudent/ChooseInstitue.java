@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.example.user.guruforstudent.Controls.FileRW;
 import com.example.user.guruforstudent.Models.Course;
 import com.example.user.guruforstudent.Models.Institue;
+import com.example.user.guruforstudent.Models.Student;
+import com.example.user.guruforstudent.Models.User;
+import com.example.user.guruforstudent.Models.teacher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +29,15 @@ public class ChooseInstitue extends AppCompatActivity {
     Button nxt;
    // Button logout;
     TextView regtxt;
-
+    String insId;
+    String crsId;
+    int teacherId;
+    int studentId;
+    Institue ins = new Institue();
+    Course crs = new Course();
+    User u = new User();
+    teacher t = new teacher();
+    Student st = new Student();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +45,10 @@ public class ChooseInstitue extends AppCompatActivity {
         setContentView(R.layout.activity_waiting_reg);
         spin = (Spinner) findViewById(R.id.insNameSpin);
         crsSpin = (Spinner) findViewById(R.id.crsNameSpin);
-        regid = (EditText)findViewById(R.id.reg);
-        nxt = (Button)findViewById(R.id.toMainpg);
-       // logout = (Button)findViewById(R.id.LogOut);
-        regtxt =  (TextView) findViewById(R.id.tvregnm);
+        regid = (EditText) findViewById(R.id.reg);
+        nxt = (Button) findViewById(R.id.toMainpg);
+        // logout = (Button)findViewById(R.id.LogOut);
+        regtxt = (TextView) findViewById(R.id.tvregnm);
 
         loadSpin();
         //loadCrsSpin("E Soft Metro Campus");
@@ -56,23 +67,44 @@ public class ChooseInstitue extends AppCompatActivity {
 
             }
         }); */
-       spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
-                // Notify the selected item text
+                insId = ins.getInsId(selectedItemText); //to get institute Id
+
+                // Notify the selected item  text
                 loadCrsSpin(selectedItemText);
                 Toast.makeText
                         (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                         .show();
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+        crsSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                crsId = crs.getCrsId(selectedItemText); //to get the crs Id
 
-        }
+                // Notify the selected item  text
+
+                Toast.makeText
+                        (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
 
     private void openHomepg() {
         Intent intent = new Intent(this,Home.class);
@@ -87,8 +119,9 @@ public class ChooseInstitue extends AppCompatActivity {
     } */
 
     private void loadSpin() {
-        Institue ins = new Institue();
+
         List<String> insName = ins.getAllInstitutes();
+
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, insName);
@@ -108,6 +141,7 @@ public class ChooseInstitue extends AppCompatActivity {
     public void loadCrsSpin(String insname) {
         Course crs = new Course();
         List<String> crsName = crs.getAllcrs(insname);
+
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, crsName);

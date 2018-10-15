@@ -53,5 +53,34 @@ public class Course {
 
         return  crsName;
     }
+    public String getCrsId(String name){
+        String crsID = null;
+        String selectQuery = "SELECT `id` FROM `courses` WHERE `name`=?";
+
+
+        try {
+            ps = con.prepareStatement(selectQuery);
+            ps.setString(1,name);
+            ResultSet rs = ps.executeQuery();
+            //insName.add("Hello");
+
+            if(rs.next()){
+                crsID = rs.getString(1);
+
+            }
+            //con.close();
+
+        } catch (SQLException e) {
+            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            System.out.print(e.getMessage());
+        }
+
+
+
+
+
+
+        return  crsID;
+    }
 
 }
