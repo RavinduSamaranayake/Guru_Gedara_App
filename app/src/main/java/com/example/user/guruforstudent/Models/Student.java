@@ -112,7 +112,8 @@ public class Student {
             e.printStackTrace();
         }
     }
-    public void getCurStId(){
+    public int getCurStId(){
+       int stId =0;
        User u = new User();
        u.getCurIdCurLevel();
        int crUid = u.curUid;
@@ -124,7 +125,7 @@ public class Student {
 
                ResultSet rs = ps3.executeQuery();
                if (rs.next()) {
-                    this.stdId = rs.getInt(1);
+                    stId = rs.getInt(1);
 
                }
            }catch (Exception e) {
@@ -132,8 +133,9 @@ public class Student {
            }
        }
        else{
-           this.stdId=0;
+           stId=0;
        }
+       return stId;
     }
 }
 

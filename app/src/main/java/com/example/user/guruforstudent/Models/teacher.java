@@ -89,7 +89,8 @@ public class teacher {
         }
     }
 
-    public void getCurTeachId(){
+    public int getCurTeachId(){
+        int tid=0;
         User u = new User();
         u.getCurIdCurLevel();
         int crUid = u.curUid;
@@ -101,7 +102,7 @@ public class teacher {
 
                 ResultSet rs = ps3.executeQuery();
                 if (rs.next()) {
-                    this.teachId = rs.getInt(1);
+                    tid = rs.getInt(1);
 
                 }
             }catch (Exception e) {
@@ -109,8 +110,9 @@ public class teacher {
             }
         }
         else{
-            this.teachId=0;
+            tid=0;
         }
+        return tid;
     }
 }
 

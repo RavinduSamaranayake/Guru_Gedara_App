@@ -17,8 +17,11 @@ import com.example.user.guruforstudent.Models.Course;
 import com.example.user.guruforstudent.Models.Institue;
 import com.example.user.guruforstudent.Models.Student;
 import com.example.user.guruforstudent.Models.User;
+import com.example.user.guruforstudent.Models.insStudent;
 import com.example.user.guruforstudent.Models.teacher;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +58,26 @@ public class ChooseInstitue extends AppCompatActivity {
         nxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openHomepg();
+                if(u.getCurIdCurLevel()==4){   // verify to the user level is student
+                    int stid = st.getCurStId();
+                    String regnum = regid.getText().toString();
+                    insStudent ist = new insStudent();
+                    PreparedStatement psist = ist.fillInsStTable(insId,stid,crsId,regnum,0);
+                    try {
+                        if(psist.executeUpdate()>0){
+                            Toast.makeText
+                                    (getApplicationContext(), "Student Registration is Sucessfully ", Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if(u.getCurIdCurLevel()==3){ //user level is teacher
+
+                }
+
+
             }
         });
       /*  logout.setOnClickListener(new View.OnClickListener() {
