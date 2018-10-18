@@ -74,8 +74,8 @@ public class userRegister extends AppCompatActivity {
                     returnEmail = emai;
                     String passwrd = passwd.getText().toString();
                     returnPassword = passwrd;
-                    ps = User.UserReg(finame, laname, emai, passwrd, 3);
-                    newps = ps;
+                    ps = User.UserReg(finame, laname, emai, passwrd, 3); //prepared statement of user as a teacher
+                    newps = ps; //to save static ps
                     regteachpg();
 
 
@@ -112,7 +112,7 @@ public class userRegister extends AppCompatActivity {
                     returnEmail = emai;
                     String passwrd = passwd.getText().toString();
                     returnPassword = passwrd;
-                    ps = User.UserReg(finame, laname, emai, passwrd, 4);
+                    ps = User.UserReg(finame, laname, emai, passwrd, 4);  //prepared statement of user as a student
                     newps = ps;
                     regstpg();
 
@@ -124,7 +124,7 @@ public class userRegister extends AppCompatActivity {
     }
 
     public void regteachpg() {
-        Intent intent = new Intent(getBaseContext(), teacherRegistration.class);
+        Intent intent = new Intent(this, teacherRegistration.class);
         intent.putExtra("Email",email.getText().toString());
         intent.putExtra("Password",passwd.getText().toString());
         startActivity(intent);

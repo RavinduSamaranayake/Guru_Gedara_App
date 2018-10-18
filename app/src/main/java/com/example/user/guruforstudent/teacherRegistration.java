@@ -1,6 +1,7 @@
 package com.example.user.guruforstudent;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.Toast;
 
 import com.example.user.guruforstudent.Models.Student;
 import com.example.user.guruforstudent.Models.teacher;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.sql.PreparedStatement;
 
@@ -24,7 +29,7 @@ public class teacherRegistration extends AppCompatActivity {
  EditText eduqulify;
  EditText subjects;
  EditText another;
-
+ FirebaseAuth auth;
  Button regbtn;
 
  @Override
@@ -39,6 +44,7 @@ public class teacherRegistration extends AppCompatActivity {
              subjects = (EditText)findViewById(R.id.subject);
              another = (EditText)findViewById(R.id.another);
              regbtn = (Button)findViewById(R.id.regtoIns);
+             auth = FirebaseAuth.getInstance();
 
 
 
@@ -86,15 +92,27 @@ public class teacherRegistration extends AppCompatActivity {
  String subject = subjects.getText().toString();
  String anothe = another.getText().toString();
  PreparedStatement ps = teacher.teachReg(nicnum,tel,sch,edu,subject,anothe);
+  String returnEmail = getIntent().getStringExtra("Email");
+  String returnPassword = getIntent().getStringExtra("Password");
 
 
  //PreparedStatement ps1 = userRegister.getps();
  try {
  if (ps.executeUpdate() > 0) {
+  auth.createUserWithEmailAndPassword(returnEmail,returnPassword).addOnCompleteListener(teacherRegistration.this, new OnCompleteListener<AuthResult>() {
+   @Override
+   public void onComplete(@NonNull Task<AuthResult> task) {
+    if(!task.isSuccessful()){
+     Toast.makeText(teacherRegistration.this,"Something wrong with Firebase",Toast.LENGTH_LONG).show();
+    }else{
+     Toast.makeText(getApplicationContext(), "Registration Sueccessfull ", Toast.LENGTH_LONG).show();
+     chooseInspg();
+     finish();
+    }
+   }
+  });
 
 
- Toast.makeText(getApplicationContext(), "Registration Sueccessfull ", Toast.LENGTH_LONG).show();
- chooseInspg();
  } else {
  Toast.makeText(getApplicationContext(), "Registration fail", Toast.LENGTH_LONG).show();
  }

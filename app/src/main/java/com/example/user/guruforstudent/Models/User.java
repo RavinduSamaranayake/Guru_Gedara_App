@@ -98,7 +98,7 @@ import java.io.*;
             return ps;
 
         }
-        public int getCurIdCurLevel(){
+        public int getCurIdCurLevel(){ //get the user level
             int ulevel=0;
             auth = FirebaseAuth.getInstance();
             String mail = auth.getCurrentUser().getEmail();
