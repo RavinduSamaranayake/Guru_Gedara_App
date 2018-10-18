@@ -12,11 +12,11 @@ public class insStudent {
     public insStudent(){
         con = MyConnection.getconnection();
     }
-    public PreparedStatement fillInsStTable(String insId,int stdId,String crsId,String regId,int status){
+    public PreparedStatement fillInsStTable(String insId,String stdId,String crsId,String regId,int status){
         try {
             ps = con.prepareStatement("INSERT INTO `institute_students`(`institute_id`, `student_id`, `course_id`, `regNumber`, `status`) VALUES (?,?,?,?,?)");
             ps.setString(1,insId);
-            ps.setInt(2,stdId);
+            ps.setString(2,stdId);
             ps.setString(3,crsId);
             ps.setString(4,regId);
             ps.setInt(5,status);

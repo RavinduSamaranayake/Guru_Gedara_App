@@ -18,6 +18,7 @@ import com.example.user.guruforstudent.Models.Institue;
 import com.example.user.guruforstudent.Models.Student;
 import com.example.user.guruforstudent.Models.User;
 import com.example.user.guruforstudent.Models.insStudent;
+import com.example.user.guruforstudent.Models.insTeacher;
 import com.example.user.guruforstudent.Models.teacher;
 
 import java.sql.PreparedStatement;
@@ -60,9 +61,10 @@ public class ChooseInstitue extends AppCompatActivity {
             public void onClick(View view) {
                 if(u.getCurIdCurLevel()==4){   // verify to the user level is student
                     int stid = st.getCurStId();
+                    String stdid = Integer.toString(stid);
                     String regnum = regid.getText().toString();
                     insStudent ist = new insStudent();
-                    PreparedStatement psist = ist.fillInsStTable(insId,stid,crsId,regnum,0);
+                    PreparedStatement psist = ist.fillInsStTable(insId,stdid,crsId,regnum,0);
                     try {
                         if(psist.executeUpdate()>0){
                             Toast.makeText
@@ -74,7 +76,20 @@ public class ChooseInstitue extends AppCompatActivity {
                     }
                 }
                 else if(u.getCurIdCurLevel()==3){ //user level is teacher
-
+                    int tid = t.getCurTeachId(); //get currrent teacher id
+                    String teachId = Integer.toString(tid);
+                    String regnum = regid.getText().toString();
+                    insTeacher ite = new insTeacher();
+                    PreparedStatement psist = ite.fillInsTeachTable(insId,teachId,crsId,regnum,0); //fill teacher institute table
+                    try {
+                        if(psist.executeUpdate()>0){
+                            Toast.makeText
+                                    (getApplicationContext(), "Teacher Registration is Sucessfully ", Toast.LENGTH_SHORT)
+                                    .show();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
 
 

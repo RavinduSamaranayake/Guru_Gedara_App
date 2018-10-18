@@ -12,7 +12,7 @@ public class insTeacher {
     public insTeacher(){
         con = MyConnection.getconnection();
     }
-    public PreparedStatement fillInsStTable(String insId,String teachId,String crsId,String regId,int status){
+    public PreparedStatement fillInsTeachTable(String insId,String teachId,String crsId,String regId,int status){
         try {
             ps = con.prepareStatement("INSERT INTO `institute_teachers`(`institute_id`, `teacher_id`, `course_id`, `regNumber`, `status`) VALUES (?,?,?,?,?)");
             ps.setString(1,insId);
