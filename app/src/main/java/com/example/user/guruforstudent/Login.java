@@ -101,9 +101,32 @@ public class Login extends AppCompatActivity {
                         if(!task.isSuccessful()){
                             Toast.makeText(Login.this,"Username or password is invalid",Toast.LENGTH_LONG).show();
                         }else{
-                            startActivity(new Intent(Login.this,ChooseInstitue.class));
-                            finish();
+                            if(user.getCurIdCurLevel()==3){//user level is teacher
+                                int tid = t.getCurTeachId(); //get current teacher id
+                                String teachId = Integer.toString(tid);
+                                if(iteach.checkTeachStatus(teachId)){ //check wether  institute registration status is 0 or 1
+                                    startActivity(new Intent(Login.this, Home.class)); //loading home page
+                                    finish();
+                                }
+                                else{ //if the registration status is 0
+                                    startActivity(new Intent(Login.this, WaitingReg.class)); //loading waitingreg page
+                                    finish();
+                                }
+                            }
+                            else if(user.getCurIdCurLevel()==4){//user level is student
+                                int stid = st.getCurStId(); //get current student id
+                                String stdId = Integer.toString(stid);
+                                if(istud.checkStdStatus(stdId)){ //check wether  institute registration status is 0 or 1
+                                    startActivity(new Intent(Login.this, Home.class)); //loading home page
+                                    finish();
+                                }
+                                else{ //if the registration status is 0
+                                    startActivity(new Intent(Login.this, WaitingReg.class)); //loading waitingreg page
+                                    finish();
+                                }
+                            }
                         }
+
                     }
                 });
             }
