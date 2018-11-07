@@ -89,7 +89,7 @@ public class teacher {
         }
     }
 
-    public int getCurTeachId(){
+    public int getCurTeachId(){  //for get the current teacher Id
         int tid=0;
         User u = new User();
         u.getCurIdCurLevel();

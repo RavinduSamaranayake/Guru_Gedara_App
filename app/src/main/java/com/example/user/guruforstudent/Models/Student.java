@@ -31,6 +31,7 @@ public class Student {
     public Student(){
         con = MyConnection.getconnection();
     }
+    //for get the insert prepared statement of student
     public static PreparedStatement StReg(String nic, String phone, String school, int age, String olindex,String alindex)  {
         con = MyConnection.getconnection();
         String query = "INSERT INTO `students`( `nic`, `phone`, `school`, `age`, `olindex`, `alindex`, `user_id`) VALUES (?,?,?,?,?,?,?)";
@@ -77,7 +78,7 @@ public class Student {
         } catch (Exception e) { e.printStackTrace(); }
         return key;
     } */
-   public static int getAllStPos() {
+   public static int getAllStPos() { // for get the last index of user table
        int posi =0;
        PreparedStatement ps1 = userRegister.getps();
 //       testUser.passValue();
@@ -105,14 +106,14 @@ public class Student {
        return posi;
 
    }
-    public static void conClose(){
+    public static void conClose(){ //for connection close
         try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public int getCurStId(){
+    public int getCurStId(){  //for get the current student id(login active student)
        int stId =0;
        User u = new User();
        u.getCurIdCurLevel();

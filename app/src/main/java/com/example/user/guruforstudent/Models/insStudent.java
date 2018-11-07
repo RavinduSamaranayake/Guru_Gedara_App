@@ -4,6 +4,7 @@ import com.example.user.guruforstudent.MyConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class insStudent {
@@ -25,6 +26,27 @@ public class insStudent {
             e.printStackTrace();
         }
         return ps;
+    }
+    public boolean checkStdStatus(String stdId){ //for checking student is registerd status is 0 or 1.... if even one record has status =1 return true
+        try {
+            ps = con.prepareStatement("SELECT `institute_id` FROM `institute_students` WHERE `student_id` = ? AND `status` = ?");
+            ps.setString(1, stdId);
+            ps.setInt(2, 1);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                System.out.print("Login to home");
+                return true;
+
+            } else {
+                System.out.print("fail to loading home");
+                return false;
+            }
+
+
+        } catch (Exception e) {
+            System.out.print(e);
+            return false;
+        }
     }
 
 

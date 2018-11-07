@@ -70,6 +70,7 @@ public class ChooseInstitue extends AppCompatActivity {
                             Toast.makeText
                                     (getApplicationContext(), "Student Registration is Sucessfully ", Toast.LENGTH_SHORT)
                                     .show();
+                            waitreg();
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -86,6 +87,7 @@ public class ChooseInstitue extends AppCompatActivity {
                             Toast.makeText
                                     (getApplicationContext(), "Teacher Registration is Sucessfully ", Toast.LENGTH_SHORT)
                                     .show();
+                            waitreg();
                         }
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -140,6 +142,11 @@ public class ChooseInstitue extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void waitreg() {
+        Intent intent = new Intent(this,WaitingReg.class);
+        startActivity(intent);
     }
 
 

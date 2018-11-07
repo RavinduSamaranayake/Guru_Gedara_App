@@ -9,9 +9,9 @@
         android:layout_height="97dp"
         android:layout_marginBottom="5dp"
         android:background="@color/Gray"
+        android:descendantFocusability="blocksDescendants"
         android:labelFor="@+id/editText"
-        android:padding="15dp"
-        android:descendantFocusability="blocksDescendants">
+        android:padding="15dp">
 
         <TextView
             android:id="@+id/tvClz"
@@ -24,6 +24,7 @@
             android:textColor="@color/Crimson"
             android:textSize="18sp"
             android:textStyle="bold" />
+
 
         <Button
             android:id="@+id/btnPay"

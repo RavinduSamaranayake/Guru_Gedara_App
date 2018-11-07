@@ -8,6 +8,6 @@ public class WaitingReg extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_waiting_reg);
+        setContentView(R.layout.waiting);
     }
 }
