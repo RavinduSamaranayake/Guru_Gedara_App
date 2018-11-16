@@ -145,7 +145,7 @@ public class Student {
         List<String> instName = new ArrayList<String>();
 
         // Select All Query
-        String selectQuery = "SELECT DISTINCT ins.`name` FROM `institutes` ins ,`institute_students` inst WHERE inst.`student_id` = ? AND ins.id = inst.`institute_id`";
+        String selectQuery = "SELECT DISTINCT ins.`name` FROM `institutes` ins ,`institute_students` inst WHERE inst.`student_id` = ? AND ins.id = inst.`institute_id` AND `status` = 1";
         //instName.add("kushan");
        // instName.add("Ravindu");
 
