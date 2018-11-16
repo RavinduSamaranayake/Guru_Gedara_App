@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.user.guruforstudent.Models.User.ps;
@@ -27,7 +28,9 @@ public class Student {
     int pos;
     int stdId;
     static Connection con = null;
+
     PreparedStatement ps3 = null;
+    PreparedStatement ps4 = null;
     public Student(){
         con = MyConnection.getconnection();
     }
@@ -35,8 +38,8 @@ public class Student {
     public static PreparedStatement StReg(String nic, String phone, String school, int age, String olindex,String alindex)  {
         con = MyConnection.getconnection();
         String query = "INSERT INTO `students`( `nic`, `phone`, `school`, `age`, `olindex`, `alindex`, `user_id`) VALUES (?,?,?,?,?,?,?)";
-       // userRegister u = new userRegister();
-       // List<Integer> lastId = u.getAllStPos();
+        // userRegister u = new userRegister();
+        // List<Integer> lastId = u.getAllStPos();
         // int pos = lastId.get(lastId.size()-1);
         int pos = getAllStPos();
         System.out.println("----------------------------------------------------------------------------"+pos);
@@ -137,6 +140,33 @@ public class Student {
            stId=0;
        }
        return stId;
+    }
+    public List<String> getAllStRegIns(String stid){
+        List<String> instName = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT DISTINCT ins.`name` FROM `institutes` ins ,`institute_students` inst WHERE inst.`student_id` = ? AND ins.id = inst.`institute_id`";
+        //instName.add("kushan");
+       // instName.add("Ravindu");
+
+        try {
+
+            ps4 = con.prepareStatement(selectQuery);
+            ps4.setString(1,stid);
+            ResultSet rs = ps4.executeQuery();
+            //insName.add("Hello");
+
+            while(rs.next()){
+                instName.add(rs.getString(1).toString());
+
+            }
+            //con.close();
+
+        } catch (SQLException e) {
+            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            System.out.print(e.getMessage());
+        }
+        return  instName;
     }
 }
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/classes"
+        android:text="Your Institutes"
         android:textColor="@color/Blue"
         android:textSize="36sp"
         android:textStyle="bold" />

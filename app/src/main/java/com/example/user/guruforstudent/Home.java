@@ -9,18 +9,22 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar = null;
     FirebaseAuth auth;
+    CardView addIns;
+    CardView viewIns;
+    CardView rateIns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,41 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        addIns = (CardView)findViewById(R.id.addInstitue);
+        viewIns = (CardView)findViewById(R.id.viewInstitue);
+        rateIns = (CardView)findViewById(R.id.rateInstitue);
+        addIns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadAddInspg();
+            }
+        });
+        rateIns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadRateInspg();
+            }
+        });
+        viewIns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadViewInspg();
+            }
+        });
+        
+    }
+
+    private void loadRateInspg() {
+    }
+
+    private void loadViewInspg() {
+        Intent intent = new Intent(this,classes.class);
+        startActivity(intent);
+    }
+
+    private void loadAddInspg() {
+        Intent intent = new Intent(this,ChooseInstitue.class);
+        startActivity(intent);
     }
 
     @Override

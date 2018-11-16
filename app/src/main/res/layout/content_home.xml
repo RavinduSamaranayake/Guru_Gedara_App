@@ -21,7 +21,7 @@ tools:showIn="@layout/app_bar_home"
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/bankcardId"
+            android:id="@+id/viewInstitue"
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
@@ -66,6 +66,7 @@ tools:showIn="@layout/app_bar_home"
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/addInstitue"
             android:layout_width="160dp"
             android:layout_height="190dp"
             android:layout_margin="10dp"
@@ -157,6 +158,7 @@ tools:showIn="@layout/app_bar_home"
             </LinearLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
+            android:id="@+id/rateInstitue"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"

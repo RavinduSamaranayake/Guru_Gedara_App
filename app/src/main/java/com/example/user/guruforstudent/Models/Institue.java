@@ -32,6 +32,7 @@ public class Institue {
 
 
         try {
+
             ps = con.prepareStatement(selectQuery);
             ResultSet rs = ps.executeQuery();
             //insName.add("Hello");

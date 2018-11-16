@@ -11,17 +11,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 /**
  * Created by USER on 4/6/2018.
  */
 
 public class CustomClzList extends ArrayAdapter<String> {
-    private String[] clzes;
+    List<String> insName;
     private Activity context;
-    public CustomClzList(Activity context,String[] clzes) {
-        super(context, R.layout.listview_clz,clzes);
+    public CustomClzList(Activity context, List<String> insName) {
+        super(context, R.layout.listview_clz,insName);
         this.context = context;
-        this.clzes = clzes;
+        this.insName = insName;
 
     }
 
@@ -34,24 +36,18 @@ public class CustomClzList extends ArrayAdapter<String> {
             LayoutInflater layoutInflater = context.getLayoutInflater();
             r = layoutInflater.inflate(R.layout.listview_clz,null,true);
             viewHolder = new CustomClzList.ViewHolder(r);
-            viewHolder.btn = (Button) r.findViewById(R.id.btnPay);
-            viewHolder.btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(),"Button was clicked at "+position,Toast.LENGTH_SHORT).show();
-                }
-            });
+
             r.setTag(viewHolder);
         }
         else{
             viewHolder = (CustomClzList.ViewHolder) r.getTag();
         }
-        viewHolder.tv2.setText(clzes[position]);
+        viewHolder.tv2.setText(insName.get(position));
         return r;
     }
     class ViewHolder{
         TextView tv2;
-        Button btn;
+
         ViewHolder(View v){
             tv2 = v.findViewById(R.id.tvClz);
         }

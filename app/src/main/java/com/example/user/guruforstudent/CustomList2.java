@@ -57,5 +57,3 @@ public class CustomList2 extends ArrayAdapter<String> {
         }
     }
 }
-
-

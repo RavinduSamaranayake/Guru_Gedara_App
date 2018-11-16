@@ -26,16 +26,6 @@
             android:textStyle="bold" />
 
 
-        <Button
-            android:id="@+id/btnPay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tvClz"
-            android:layout_alignBottom="@+id/tvClz"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp"
-            android:text="@string/payment" />
-
     </RelativeLayout>
 
 </LinearLayout>
