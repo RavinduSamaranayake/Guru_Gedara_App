@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.user.guruforstudent.Models.User.ps;
@@ -22,6 +23,7 @@ public class teacher {
     static Connection con = null;
     int teachId;
     PreparedStatement ps3 = null;
+    PreparedStatement ps4 = null;
     public teacher(){
         con = MyConnection.getconnection();
     }
@@ -113,6 +115,33 @@ public class teacher {
             tid=0;
         }
         return tid;
+    }
+    public List<String> getAllTeachRegIns(String tid){
+        List<String> instName = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT DISTINCT ins.`name` FROM `institutes` ins ,`institute_teachers` inst WHERE inst.`teacher_id` = ? AND ins.id = inst.`institute_id` AND `status` = 1";
+        //instName.add("kushan");
+        // instName.add("Ravindu");
+
+        try {
+
+            ps4 = con.prepareStatement(selectQuery);
+            ps4.setString(1,tid);
+            ResultSet rs = ps4.executeQuery();
+            //insName.add("Hello");
+
+            while(rs.next()){
+                instName.add(rs.getString(1).toString());
+
+            }
+            //con.close();
+
+        } catch (SQLException e) {
+            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            System.out.print(e.getMessage());
+        }
+        return  instName;
     }
 }
 
