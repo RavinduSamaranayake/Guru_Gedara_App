@@ -64,23 +64,7 @@ public class Student {
         return ps;
     }
 
-   /* public int performKeys(String Query) {
-        PreparedStatement pstmt;
-        int key = 0;
-        try {
-            pstmt = con.prepareStatement(Query, Statement.RETURN_GENERATED_KEYS);
 
-            pstmt.executeUpdate();
-            ResultSet keys = pstmt.getGeneratedKeys();
-
-            keys.next();
-            key = keys.getInt(1);
-            keys.close();
-            pstmt.close();
-            con.close();
-        } catch (Exception e) { e.printStackTrace(); }
-        return key;
-    } */
    public static int getAllStPos() { // for get the last index of user table
        int posi =0;
        PreparedStatement ps1 = userRegister.getps();
@@ -117,7 +101,7 @@ public class Student {
         }
     }
     public int getCurStId(){  //for get the current student id(login active student)
-       int stId =0;
+       int stId;
        User u = new User();
        u.getCurIdCurLevel();
        int crUid = u.curUid;
@@ -130,16 +114,20 @@ public class Student {
                ResultSet rs = ps3.executeQuery();
                if (rs.next()) {
                     stId = rs.getInt(1);
+                   return stId;
 
                }
            }catch (Exception e) {
                e.printStackTrace();
            }
+           stId=0;
+           return stId;
        }
        else{
            stId=0;
+           return stId;
        }
-       return stId;
+
     }
     public List<String> getAllStRegIns(String stid){
         List<String> instName = new ArrayList<String>();

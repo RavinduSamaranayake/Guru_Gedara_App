@@ -92,29 +92,37 @@ public class teacher {
     }
 
     public int getCurTeachId(){  //for get the current teacher Id
-        int tid=0;
+        int tid;
         User u = new User();
         u.getCurIdCurLevel();
         int crUid = u.curUid;
         int crLevel = u.curUlevel;
         if(crLevel == 3){
             try {
-                ps3 = con.prepareStatement("SELECT `id` FROM `students` WHERE `user_id` = ?");
+                ps3 = con.prepareStatement("SELECT `id` FROM `teachers` WHERE `user_id` = ?");
                 ps3.setInt(1, crUid);
 
                 ResultSet rs = ps3.executeQuery();
                 if (rs.next()) {
                     tid = rs.getInt(1);
+                    System.out.println("*******************************teacher id is : "+tid+" *******************************");
+                    return tid;
 
                 }
             }catch (Exception e) {
                 e.printStackTrace();
             }
+            tid=444;
+            System.out.println("*******************************teacher id is : "+tid+" *******************************");
+            return tid;
         }
         else{
-            tid=0;
+            tid=111;
+            System.out.println("*************HELLLLLL******************teacher id is : "+tid+" *******************************");
+            return tid;
         }
-        return tid;
+
+
     }
     public List<String> getAllTeachRegIns(String tid){
         List<String> instName = new ArrayList<String>();

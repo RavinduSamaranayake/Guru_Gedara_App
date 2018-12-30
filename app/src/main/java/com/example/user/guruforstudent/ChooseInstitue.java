@@ -79,6 +79,7 @@ public class ChooseInstitue extends AppCompatActivity {
                 else if(u.getCurIdCurLevel()==3){ //user level is teacher
                     int tid = t.getCurTeachId(); //get currrent teacher id
                     String teachId = Integer.toString(tid);
+                    System.out.println("******************TTTTTTTTTTTT*************teacher id is : "+tid+" *******************************");
                     String regnum = regid.getText().toString();
                     insTeacher ite = new insTeacher();
                     PreparedStatement psist = ite.fillInsTeachTable(insId,teachId,crsId,regnum,0); //fill teacher institute table
