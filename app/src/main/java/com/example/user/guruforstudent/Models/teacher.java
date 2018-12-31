@@ -151,6 +151,31 @@ public class teacher {
         }
         return  instName;
     }
+    public List<String> getAllTeachRegCrs(String tid,String insId){ //for get the all registered course list of particular institute of a student
+        List<String> crsName = new ArrayList<String>();
+        String selectQuery = "SELECT crs.`name` FROM `courses` crs ,`institute_teachers` inst WHERE inst.`teacher_id` = ? AND crs.id = inst.`course_id` AND `status` = 1 AND inst.`institute_id` = ?";
+
+
+        try {
+
+            ps4 = con.prepareStatement(selectQuery);
+            ps4.setString(1,tid);
+            ps4.setString(2,insId);
+            ResultSet rs = ps4.executeQuery();
+            //insName.add("Hello");
+
+            while(rs.next()){
+                crsName.add(rs.getString(1)); //add the crasnames for crsName list
+
+            }
+            //con.close();
+
+        } catch (SQLException e) {
+            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            System.out.print(e.getMessage());
+        }
+        return  crsName;
+    }
 }
 
 

@@ -24,17 +24,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/viewbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tvIns"
-            android:layout_alignBottom="@+id/tvIns"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp"
-            android:background="@color/Crimson"
-            android:text="@string/view" />
-
     </RelativeLayout>
 
 

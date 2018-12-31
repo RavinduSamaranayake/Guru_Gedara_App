@@ -16,20 +16,22 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import static android.support.v4.content.ContextCompat.startActivity;
 
 /**
  * Created by USER on 4/5/2018.
  */
-
+//this class use to create the crs name list view.......
 public class CustomMainList extends ArrayAdapter<String> {
 
-    private String[] Institutes;
+    List<String> crsNameList;
     private Activity context;
-    public CustomMainList(Activity context,String[] Institutes) {
-        super(context, R.layout.listview_institute,Institutes);
+    public CustomMainList(Activity context, List<String> crsNameList) {
+        super(context, R.layout.listview_institute,crsNameList);
         this.context = context;
-        this.Institutes = Institutes;
+        this.crsNameList = crsNameList;
 
     }
 
@@ -42,34 +44,17 @@ public class CustomMainList extends ArrayAdapter<String> {
             LayoutInflater layoutInflater = context.getLayoutInflater();
             r = layoutInflater.inflate(R.layout.listview_institute,null,true);
             viewHolder = new CustomMainList.ViewHolder(r);
-            viewHolder.btn = (Button) r.findViewById(R.id.viewbtn);
-            viewHolder.btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getContext(),"Button was clicked at "+position,Toast.LENGTH_SHORT).show();
-                    //openclzpg();
-                }
-            });
             r.setTag(viewHolder);
         }
         else{
             viewHolder = (CustomMainList.ViewHolder) r.getTag();
         }
-        viewHolder.tv2.setText(Institutes[position]);
+        viewHolder.tv2.setText(crsNameList.get(position));
         return r;
     }
 
-    public void openclzpg() {
-        //Intent intent = new Intent(this,classes.class); This instance have given a error.. so I have to fix this problem later
-        //startActivity(intent);
-    }
-
-
-
-
-    class ViewHolder{
+    class ViewHolder{ // this class use to create the items in a list item
         TextView tv2;
-        Button btn;
         ViewHolder(View v){
             tv2 = v.findViewById(R.id.tvIns);
         }
