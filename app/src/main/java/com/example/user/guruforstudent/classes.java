@@ -3,6 +3,8 @@ package com.example.user.guruforstudent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,13 +32,21 @@ public class classes extends AppCompatActivity {
         int ulevel = user.getCurIdCurLevel(); //check whether the current user level is student or teacher
         if(ulevel == 4) { //the current user is student
             id = Integer.toString(std.getCurStId());
-            List<String> insName = std.getAllStRegIns(id);
+            final List<String> insName = std.getAllStRegIns(id);
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_classes);
             list_1 = (ListView)findViewById(R.id.clzlistview);
 
             CustomClzList customClzList = new CustomClzList(this,insName);
             list_1.setAdapter(customClzList);
+            list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(classes.this,"List Item was clicked at "+insName.get(position),Toast.LENGTH_SHORT).show();
+                    String instname = insName.get(position);
+
+                }
+            });
         }
         else if(ulevel == 3) { //the current user is teacher
             id = Integer.toString(tch.getCurTeachId());

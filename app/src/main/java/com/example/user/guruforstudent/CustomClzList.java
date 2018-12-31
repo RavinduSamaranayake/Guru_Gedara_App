@@ -41,6 +41,7 @@ public class CustomClzList extends ArrayAdapter<String> {
             viewHolder = (CustomClzList.ViewHolder) r.getTag();
         }
         viewHolder.tv2.setText(insName.get(position));
+
         return r;
     }
     class ViewHolder{
