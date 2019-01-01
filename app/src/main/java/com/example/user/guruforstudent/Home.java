@@ -67,6 +67,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void loadRateInspg() {
+        Intent intent = new Intent(this,rateInstitute.class);
+        startActivity(intent);
     }
 
     private void loadViewInspg() {
