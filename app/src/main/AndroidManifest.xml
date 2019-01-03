@@ -54,7 +54,8 @@
         <activity android:name=".rateInstitute" />
         <activity android:name=".syllabusList" />
         <activity android:name=".CourseList" />
-        <activity android:name=".InstituteList"></activity>
+        <activity android:name=".InstituteList" />
+        <activity android:name=".syllabusDescription"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.user.guruforstudent;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,7 @@ public class syllabusList extends AppCompatActivity {
         //crs = new CourseList();
         String insid = InstituteList.getInsId();
         String crsid = CourseList.getCrsId();
-        List<List<String>> syllabuslist =  syllabus.getAllsyllabus(insid,crsid);
+        final List<List<String>> syllabuslist =  syllabus.getAllsyllabus(insid,crsid);
 
         CustomSyllabusList customsyllabus = new CustomSyllabusList(this,syllabuslist);
         list_1.setAdapter(customsyllabus); //set the list items for list view
@@ -33,9 +34,23 @@ public class syllabusList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                // Toast.makeText(Institutes.this,"List Item was clicked at "+position,Toast.LENGTH_SHORT).show();
+                String name = syllabuslist.get(position).get(0);
+               String descript = syllabuslist.get(position).get(1);
+               String learnpoints = syllabuslist.get(position).get(2);
+               openDesPg(name,descript,learnpoints);
+
+
 
             }
         });
 
+    }
+
+    private void openDesPg(String name, String descript, String learnpoints) {
+        Intent intent = new Intent(this, syllabusDescription.class);
+        intent.putExtra("name",name);
+        intent.putExtra("description",descript);
+        intent.putExtra("points",learnpoints);
+        startActivity(intent);
     }
 }
