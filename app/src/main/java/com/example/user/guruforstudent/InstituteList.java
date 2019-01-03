@@ -3,7 +3,6 @@ package com.example.user.guruforstudent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,7 +15,7 @@ import com.example.user.guruforstudent.Models.teacher;
 
 import java.util.List;
 
-public class classes extends AppCompatActivity {
+public class InstituteList extends AppCompatActivity {
     ListView list_1;
     Student std;
     teacher tch;
@@ -48,7 +47,7 @@ public class classes extends AppCompatActivity {
             list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(classes.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InstituteList.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
                     String instname = insName.get(position); //get the institute name using clicked item index for insName list
                     String insId = institue.getInsId(instname); //to convert to the institute id
                     institute_id = insId;
@@ -72,7 +71,7 @@ public class classes extends AppCompatActivity {
             list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(classes.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InstituteList.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
                     String instname = insName.get(position);
                     String insId = institue.getInsId(instname);
                     institute_id = insId;
@@ -85,17 +84,17 @@ public class classes extends AppCompatActivity {
             });
         }
 
-        }
-        public static List<String> getCrsnamelist(){ //to getting your crsname list
-               return crsName;
-        }
-        public static String getInsId(){ //to getting your crsname list
+    }
+    public static List<String> getCrsnamelist(){ //to getting your crsname list
+        return crsName;
+    }
+    public static String getInsId(){ //to getting your crsname list
         return institute_id;
     }
-        public void openCrslistpg() {
-                Intent intent = new Intent(this,Institutes.class);
-                startActivity(intent);
-        }
+    public void openCrslistpg() {
+        Intent intent = new Intent(this,CourseList.class);
+        startActivity(intent);
+    }
 
 
-}  //in this class we create the institute name list view and create the crs anme list and passing these values using item clicking
+}

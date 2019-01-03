@@ -1,31 +1,30 @@
 package com.example.user.guruforstudent;
-//import android.support.v7.app.AppCompatActivity;
-//import android.os.Bundle;
-import android.view.View;
-        import android.app.Activity;
-//import android.content.Intent;
+
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
-        import android.view.ViewGroup;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-//import android.widget.Button;
 import android.widget.TextView;
 
-        import java.util.List;
+import java.util.List;
+
+
+import static com.example.user.guruforstudent.R.layout.syllabuslist;
 
 /**
- * Created by USER on 4/5/2018.
+ * Created by USER on 4/6/2018.
  */
-//this class use to create the crs name list view.......
-public class CustomMainList extends ArrayAdapter<String> {
 
-    List<String> crsNameList;
+public class CustomSyllabusList extends ArrayAdapter<List<String>> {
+    List<List<String>> syllabusName;
     private Activity context;
-    public CustomMainList(Activity context, List<String> crsNameList) {
-        super(context, R.layout.listview_institute,crsNameList);
+    public CustomSyllabusList(Activity context, List<List<String>> syllabusName) {
+        super(context,R.layout.syllabuslist,syllabusName);
         this.context = context;
-        this.crsNameList = crsNameList;
+        this.syllabusName = syllabusName;
 
     }
 
@@ -33,17 +32,17 @@ public class CustomMainList extends ArrayAdapter<String> {
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View r = convertView;
-        CustomMainList.ViewHolder viewHolder = null;
+        CustomSyllabusList.ViewHolder viewHolder = null;
         if(r==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
             r = layoutInflater.inflate(R.layout.listview_institute,null,true);
-            viewHolder = new CustomMainList.ViewHolder(r);
+            viewHolder = new CustomSyllabusList.ViewHolder(r);
             r.setTag(viewHolder);
         }
         else{
-            viewHolder = (CustomMainList.ViewHolder) r.getTag();
+            viewHolder = (CustomSyllabusList.ViewHolder) r.getTag();
         }
-        viewHolder.tv2.setText(crsNameList.get(position));
+        viewHolder.tv2.setText(syllabusName.get(position).get(0));
         return r;
     }
 
@@ -54,4 +53,3 @@ public class CustomMainList extends ArrayAdapter<String> {
         }
     }
 }
-

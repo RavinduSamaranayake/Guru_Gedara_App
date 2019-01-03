@@ -24,6 +24,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     FirebaseAuth auth;
     CardView addIns;
     CardView viewIns;
+    CardView viewModule;
     CardView rateIns;
 
     @Override
@@ -44,6 +45,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         navigationView.setNavigationItemSelectedListener(this);
         addIns = (CardView)findViewById(R.id.addInstitue);
         viewIns = (CardView)findViewById(R.id.viewInstitue);
+        viewModule = (CardView)findViewById(R.id.viewModules);
         rateIns = (CardView)findViewById(R.id.rateInstitue);
         addIns.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +65,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 loadViewInspg();
             }
         });
+        viewModule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadViewModulepg();
+            }
+        });
+
         
+    }
+
+    private void loadViewModulepg() {
+        Intent intent = new Intent(this,InstituteList.class);
+        startActivity(intent);
     }
 
     private void loadRateInspg() {

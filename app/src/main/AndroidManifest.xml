@@ -23,7 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
-        <activity android:name=".Menu" />
         <activity android:name=".MainList" />
         <activity android:name=".Auth" />
         <activity android:name=".Institutes" />
@@ -46,10 +45,16 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/cercleshape" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".Models.Settings" />
         <activity android:name=".Settings" />
-        <activity android:name=".rateInstitute"></activity>
+        <activity android:name=".rateInstitute" />
+        <activity android:name=".syllabusList" />
+        <activity android:name=".CourseList" />
+        <activity android:name=".InstituteList"></activity>
     </application>
 
 </manifest>
