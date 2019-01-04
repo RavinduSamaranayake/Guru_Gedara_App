@@ -12,7 +12,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.guruforstudent.Controls.FileRW;
 import com.example.user.guruforstudent.Models.Course;
 import com.example.user.guruforstudent.Models.Institue;
 import com.example.user.guruforstudent.Models.Student;
@@ -23,7 +22,6 @@ import com.example.user.guruforstudent.Models.teacher;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseInstitue extends AppCompatActivity {

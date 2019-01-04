@@ -1,15 +1,7 @@
 package com.example.user.guruforstudent;
 
-import android.widget.Toast;
-
-import com.example.user.guruforstudent.Controls.FileRW;
-
-import java.io.IOException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Created by USER on 8/13/2018.

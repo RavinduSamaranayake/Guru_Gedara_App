@@ -1,5 +1,6 @@
 package com.example.user.guruforstudent;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,8 +46,8 @@ public class rateInstitute extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Toast.makeText(rateInstitute.this,"Rate "+insName.get(position) ,Toast.LENGTH_SHORT).show();
                         String instname = insName.get(position); //get the institute name using clicked item index for insName list
-                        String insId = institue.getInsId(instname); //to convert to the institute id
-                        String stid = Integer.toString(std.getCurStId()); //re get the current student id
+                        int insId = institue.getInsId(instname); //to convert to the institute id
+                        int stid = std.getCurStId(); //re get the current student id
                         openRateg(stid,insId); // to open the rate page
 
 
@@ -80,8 +81,11 @@ public class rateInstitute extends AppCompatActivity {
 
         }
 
-    private void openRateg(String stid, String insId) {
-
+    private void openRateg(int stid, int insId) {
+        Intent intent = new Intent(this, viewComments.class);
+        intent.putExtra("studentId",stid); //to pass to the next page
+        intent.putExtra("instituteId",insId);
+        startActivity(intent);
     }
 }
 
