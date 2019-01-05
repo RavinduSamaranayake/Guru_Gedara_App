@@ -30,15 +30,12 @@ public class rateInstitute extends AppCompatActivity {
             tch = new teacher();
             user =new User();
             institue = new Institue();
-            String id;
+            int id;
             int ulevel = user.getCurIdCurLevel(); //check whether the current user level is student or teacher
             if(ulevel == 4) { //the current user is student
-                id = Integer.toString(std.getCurStId());
+                id = std.getCurStId();
                 final List<String> insName = std.getAllStRegIns(id); //this make final because use for inner class
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_classes);
-                list_1 = (ListView)findViewById(R.id.clzlistview);
-
+                list_1 = (ListView)findViewById(R.id.rateInslistview);
                 CustomClzList customClzList = new CustomClzList(this,insName);
                 list_1.setAdapter(customClzList);
                 list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,30 +51,6 @@ public class rateInstitute extends AppCompatActivity {
                     }
                 });
             }
-          /*  else if(ulevel == 3) { //the current user is teacher
-                id = Integer.toString(tch.getCurTeachId());
-                final List<String> insName = tch.getAllTeachRegIns(id);
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_classes);
-                list_1 = (ListView)findViewById(R.id.clzlistview);
-
-                CustomClzList customClzList = new CustomClzList(this,insName);
-                list_1.setAdapter(customClzList);
-                list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(InstituteList.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
-                        String instname = insName.get(position);
-                        String insId = institue.getInsId(instname);
-                        institute_id = insId;
-                        String tid = Integer.toString(tch.getCurTeachId());
-                        crsName = tch.getAllTeachRegCrs(tid,insId); //get the registered course name list of selected Institute and save to static list
-                        openCrslistpg(); // to open the crslist page
-
-
-                    }
-                });
-            } */
 
         }
 

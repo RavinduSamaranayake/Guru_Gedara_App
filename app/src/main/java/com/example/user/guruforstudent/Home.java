@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.user.guruforstudent.Models.User;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -26,10 +27,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     CardView viewIns;
     CardView viewModule;
     CardView rateIns;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         auth=FirebaseAuth.getInstance();
+        user = new User();
+        int cur_ulevel = user.getCurIdCurLevel();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -47,6 +51,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         viewIns = (CardView)findViewById(R.id.viewInstitue);
         viewModule = (CardView)findViewById(R.id.viewModules);
         rateIns = (CardView)findViewById(R.id.rateInstitue);
+        if(cur_ulevel == 4){
+            rateIns.setVisibility(View.VISIBLE);
+        }
+        else{
+            rateIns.setVisibility(View.INVISIBLE);
+        }
+
         addIns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

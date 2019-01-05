@@ -23,7 +23,7 @@ public class classes extends AppCompatActivity {
     User user;
     Institue institue;
     static List<String> crsName;
-    static String institute_id;
+    static int institute_id;
 
     //String[] clzes = {"Class 01","Class 02","Class 03"};
 
@@ -34,10 +34,10 @@ public class classes extends AppCompatActivity {
         tch = new teacher();
         user =new User();
         institue = new Institue();
-        String id;
+        int id;
         int ulevel = user.getCurIdCurLevel(); //check whether the current user level is student or teacher
         if(ulevel == 4) { //the current user is student
-            id = Integer.toString(std.getCurStId());
+            id = std.getCurStId();
             final List<String> insName = std.getAllStRegIns(id); //this make final because use for inner class
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_classes);
@@ -50,9 +50,9 @@ public class classes extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Toast.makeText(classes.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
                     String instname = insName.get(position); //get the institute name using clicked item index for insName list
-                    String insId = institue.getInsId(instname); //to convert to the institute id
+                    int insId = institue.getInsId(instname); //to convert to the institute id
                     institute_id = insId;
-                    String stid = Integer.toString(std.getCurStId()); //re get the current student id
+                    int stid = std.getCurStId(); //re get the current student id
                     crsName = std.getAllStRegCrs(stid,insId); //get the registered course name list of selected Institute and save to static list
                     openCrslistpg(); // to open the crslist page
 
@@ -61,7 +61,7 @@ public class classes extends AppCompatActivity {
             });
         }
         else if(ulevel == 3) { //the current user is teacher
-            id = Integer.toString(tch.getCurTeachId());
+            id = tch.getCurTeachId();
             final List<String> insName = tch.getAllTeachRegIns(id);
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_classes);
@@ -74,9 +74,9 @@ public class classes extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Toast.makeText(classes.this,"View Your "+insName.get(position) +" Courses",Toast.LENGTH_SHORT).show();
                     String instname = insName.get(position);
-                    String insId = institue.getInsId(instname);
+                    int insId = institue.getInsId(instname);
                     institute_id = insId;
-                    String tid = Integer.toString(tch.getCurTeachId());
+                    int tid = tch.getCurTeachId();
                     crsName = tch.getAllTeachRegCrs(tid,insId); //get the registered course name list of selected Institute and save to static list
                     openCrslistpg(); // to open the crslist page
 
@@ -89,7 +89,7 @@ public class classes extends AppCompatActivity {
         public static List<String> getCrsnamelist(){ //to getting your crsname list
                return crsName;
         }
-        public static String getInsId(){ //to getting your crsname list
+        public static int getInsId(){ //to getting your crsname list
         return institute_id;
     }
         public void openCrslistpg() {

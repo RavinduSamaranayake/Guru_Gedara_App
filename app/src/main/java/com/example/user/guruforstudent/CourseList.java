@@ -16,7 +16,7 @@ public class CourseList extends AppCompatActivity {
     ListView list_1;
     InstituteList institutelist;
     Course crs;
-    static String Crsid;
+    static int Crsid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class CourseList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                Toast.makeText(CourseList.this,"List Item was clicked at "+position,Toast.LENGTH_SHORT).show();
                String crsname = crsNamelist.get(position);
-               String crsid = crs.getCrsId(crsname);
+               int crsid = crs.getCrsId(crsname);
                Crsid = crsid;
                openSyllabuspg();
 
@@ -52,7 +52,7 @@ public class CourseList extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static String getCrsId(){
+    public static int getCrsId(){
         return Crsid;
     }
 }

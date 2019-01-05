@@ -13,12 +13,12 @@ public class insTeacher {
     public insTeacher(){
         con = MyConnection.getconnection();
     }
-    public PreparedStatement fillInsTeachTable(String insId,String teachId,String crsId,String regId,int status){
+    public PreparedStatement fillInsTeachTable(int insId,int teachId,int crsId,String regId,int status){
         try {
             ps = con.prepareStatement("INSERT INTO `institute_teachers`(`institute_id`, `teacher_id`, `course_id`, `regNumber`, `status`) VALUES (?,?,?,?,?)");
-            ps.setString(1,insId);
-            ps.setString(2,teachId);
-            ps.setString(3,crsId);
+            ps.setInt(1,insId);
+            ps.setInt(2,teachId);
+            ps.setInt(3,crsId);
             ps.setString(4,regId);
             ps.setInt(5,status);
 
@@ -27,10 +27,10 @@ public class insTeacher {
         }
         return ps;
     }
-    public boolean checkTeachStatus(String teachId){ //for checking teacher is registerd status is 0 or 1.... if even one record has status =1 return true
+    public boolean checkTeachStatus(int teachId){ //for checking teacher is registerd status is 0 or 1.... if even one record has status =1 return true
         try {
             ps = con.prepareStatement("SELECT `institute_id` FROM `institute_teachers` WHERE `teacher_id`= ? AND `status` = ?");
-            ps.setString(1, teachId);
+            ps.setInt(1, teachId);
             ps.setInt(2, 1);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {

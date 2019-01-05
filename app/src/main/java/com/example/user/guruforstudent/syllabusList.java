@@ -24,8 +24,8 @@ public class syllabusList extends AppCompatActivity {
         syllabus = new Syllabus();
         //clz = new classes();
         //crs = new CourseList();
-        String insid = InstituteList.getInsId();
-        String crsid = CourseList.getCrsId();
+        int insid = InstituteList.getInsId();
+        int crsid = CourseList.getCrsId();
         final List<List<String>> syllabuslist =  syllabus.getAllsyllabus(insid,crsid);
 
         CustomSyllabusList customsyllabus = new CustomSyllabusList(this,syllabuslist);

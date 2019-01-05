@@ -63,8 +63,8 @@ public class Login extends AppCompatActivity {
         if (auth.getCurrentUser() != null) { //check the user is registered or not logout the system
             if(user.getCurIdCurLevel()==3){//user level is teacher
                 int tid = t.getCurTeachId(); //get current teacher id
-                String teachId = Integer.toString(tid);
-                if(iteach.checkTeachStatus(teachId)){ //check wether  institute registration status is 0 or 1
+               // String teachId = Integer.toString(tid);
+                if(iteach.checkTeachStatus(tid)){ //check wether  institute registration status is 0 or 1
                     startActivity(new Intent(Login.this, Home.class)); //loading home page
                     finish();
                 }
@@ -75,8 +75,8 @@ public class Login extends AppCompatActivity {
             }
             else if(user.getCurIdCurLevel()==4){//user level is student
                 int stid = st.getCurStId(); //get current student id
-                String stdId = Integer.toString(stid);
-                if(istud.checkStdStatus(stdId)){ //check wether  institute registration status is 0 or 1
+                //String stdId = Integer.toString(stid);
+                if(istud.checkStdStatus(stid)){ //check wether  institute registration status is 0 or 1
                     startActivity(new Intent(Login.this, Home.class)); //loading home page
                     finish();
                 }
@@ -103,8 +103,8 @@ public class Login extends AppCompatActivity {
                         }else{
                             if(user.getCurIdCurLevel()==3){//user level is teacher
                                 int tid = t.getCurTeachId(); //get current teacher id
-                                String teachId = Integer.toString(tid);
-                                if(iteach.checkTeachStatus(teachId)){ //check wether  institute registration status is 0 or 1
+                               // String teachId = Integer.toString(tid);
+                                if(iteach.checkTeachStatus(tid)){ //check wether  institute registration status is 0 or 1
                                     startActivity(new Intent(Login.this, Home.class)); //loading home page
                                     finish();
                                 }
@@ -115,8 +115,8 @@ public class Login extends AppCompatActivity {
                             }
                             else if(user.getCurIdCurLevel()==4){//user level is student
                                 int stid = st.getCurStId(); //get current student id
-                                String stdId = Integer.toString(stid);
-                                if(istud.checkStdStatus(stdId)){ //check wether  institute registration status is 0 or 1
+                               // String stdId = Integer.toString(stid);
+                                if(istud.checkStdStatus(stid)){ //check wether  institute registration status is 0 or 1
                                     startActivity(new Intent(Login.this, Home.class)); //loading home page
                                     finish();
                                 }

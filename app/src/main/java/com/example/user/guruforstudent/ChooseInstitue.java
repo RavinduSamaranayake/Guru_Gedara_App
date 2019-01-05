@@ -31,8 +31,8 @@ public class ChooseInstitue extends AppCompatActivity {
     Button nxt;
    // Button logout;
     TextView regtxt;
-    String insId;
-    String crsId;
+    int insId;
+    int crsId;
     int teacherId;
     int studentId;
     Institue ins = new Institue();
@@ -59,10 +59,10 @@ public class ChooseInstitue extends AppCompatActivity {
             public void onClick(View view) {
                 if(u.getCurIdCurLevel()==4){   // verify to the user level is student
                     int stid = st.getCurStId();
-                    String stdid = Integer.toString(stid);
+                    //String stdid = Integer.toString(stid);
                     String regnum = regid.getText().toString();
                     insStudent ist = new insStudent();
-                    PreparedStatement psist = ist.fillInsStTable(insId,stdid,crsId,regnum,0);
+                    PreparedStatement psist = ist.fillInsStTable(insId,stid,crsId,regnum,0);
                     try {
                         if(psist.executeUpdate()>0){
                             Toast.makeText
@@ -76,11 +76,11 @@ public class ChooseInstitue extends AppCompatActivity {
                 }
                 else if(u.getCurIdCurLevel()==3){ //user level is teacher
                     int tid = t.getCurTeachId(); //get currrent teacher id
-                    String teachId = Integer.toString(tid);
+                   // String teachId = Integer.toString(tid);
                     System.out.println("******************TTTTTTTTTTTT*************teacher id is : "+tid+" *******************************");
                     String regnum = regid.getText().toString();
                     insTeacher ite = new insTeacher();
-                    PreparedStatement psist = ite.fillInsTeachTable(insId,teachId,crsId,regnum,0); //fill teacher institute table
+                    PreparedStatement psist = ite.fillInsTeachTable(insId,tid,crsId,regnum,0); //fill teacher institute table
                     try {
                         if(psist.executeUpdate()>0){
                             Toast.makeText

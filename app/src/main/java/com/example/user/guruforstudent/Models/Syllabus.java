@@ -18,7 +18,7 @@ public class Syllabus {
         con = MyConnection.getconnection();
     }
 
-    public List<List<String>> getAllsyllabus(String insid,String crsid){
+    public List<List<String>> getAllsyllabus(int insid,int crsid){
         List<List<String>> syllabusName = new ArrayList<>();
 
         // Select All Query
@@ -27,8 +27,8 @@ public class Syllabus {
 
         try {
             ps = con.prepareStatement(selectQuery);
-            ps.setString(1,insid);
-            ps.setString(2,crsid);
+            ps.setInt(1,insid);
+            ps.setInt(2,crsid);
 
             ResultSet rs = ps.executeQuery();
             //insName.add("Hello");
@@ -53,37 +53,4 @@ public class Syllabus {
         return  syllabusName;
     }
 
-
-
-
-
-    public String getCrsId(String name){
-        String crsID = null;
-        String selectQuery = "SELECT `id` FROM `courses` WHERE `name`=?";
-
-
-        try {
-            ps = con.prepareStatement(selectQuery);
-            ps.setString(1,name);
-            ResultSet rs = ps.executeQuery();
-            //insName.add("Hello");
-
-            if(rs.next()){
-                crsID = rs.getString(1);
-
-            }
-            //con.close();
-
-        } catch (SQLException e) {
-            //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-            System.out.print(e.getMessage());
-        }
-
-
-
-
-
-
-        return  crsID;
-    }
 }

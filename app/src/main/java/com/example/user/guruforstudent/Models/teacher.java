@@ -124,7 +124,7 @@ public class teacher {
 
 
     }
-    public List<String> getAllTeachRegIns(String tid){
+    public List<String> getAllTeachRegIns(int tid){
         List<String> instName = new ArrayList<String>();
 
         // Select All Query
@@ -135,7 +135,7 @@ public class teacher {
         try {
 
             ps4 = con.prepareStatement(selectQuery);
-            ps4.setString(1,tid);
+            ps4.setInt(1,tid);
             ResultSet rs = ps4.executeQuery();
             //insName.add("Hello");
 
@@ -151,7 +151,7 @@ public class teacher {
         }
         return  instName;
     }
-    public List<String> getAllTeachRegCrs(String tid,String insId){ //for get the all registered course list of particular institute of a student
+    public List<String> getAllTeachRegCrs(int tid,int insId){ //for get the all registered course list of particular institute of a student
         List<String> crsName = new ArrayList<String>();
         String selectQuery = "SELECT crs.`name` FROM `courses` crs ,`institute_teachers` inst WHERE inst.`teacher_id` = ? AND crs.id = inst.`course_id` AND `status` = 1 AND inst.`institute_id` = ?";
 
@@ -159,8 +159,8 @@ public class teacher {
         try {
 
             ps4 = con.prepareStatement(selectQuery);
-            ps4.setString(1,tid);
-            ps4.setString(2,insId);
+            ps4.setInt(1,tid);
+            ps4.setInt(2,insId);
             ResultSet rs = ps4.executeQuery();
             //insName.add("Hello");
 

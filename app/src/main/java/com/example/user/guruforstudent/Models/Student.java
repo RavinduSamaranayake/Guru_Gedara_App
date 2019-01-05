@@ -129,7 +129,7 @@ public class Student {
        }
 
     }
-    public List<String> getAllStRegIns(String stid){ //for get the all registered institute of a student
+    public List<String> getAllStRegIns(int stid){ //for get the all registered institute of a student
         List<String> instName = new ArrayList<String>();
 
         // Select All Query
@@ -140,7 +140,7 @@ public class Student {
         try {
 
             ps4 = con.prepareStatement(selectQuery);
-            ps4.setString(1,stid);
+            ps4.setInt(1,stid);
             ResultSet rs = ps4.executeQuery();
             //insName.add("Hello");
 
@@ -159,7 +159,7 @@ public class Student {
 
 
 
-    public List<String> getAllStRegCrs(String stid,String insId){ //for get the all registered course list of particular institute of a student
+    public List<String> getAllStRegCrs(int stid,int insId){ //for get the all registered course list of particular institute of a student
         List<String> crsName = new ArrayList<String>();
         String selectQuery = "SELECT crs.`name` FROM `courses` crs ,`institute_students` inst WHERE inst.`student_id` = ? AND crs.id = inst.`course_id` AND `status` = 1 AND inst.`institute_id` = ?";
 
@@ -167,8 +167,8 @@ public class Student {
         try {
 
             ps4 = con.prepareStatement(selectQuery);
-            ps4.setString(1,stid);
-            ps4.setString(2,insId);
+            ps4.setInt(1,stid);
+            ps4.setInt(2,insId);
             ResultSet rs = ps4.executeQuery();
             //insName.add("Hello");
 

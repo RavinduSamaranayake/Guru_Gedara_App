@@ -53,8 +53,8 @@ public class Course {
 
         return  crsName;
     }
-    public String getCrsId(String name){
-        String crsID = null;
+    public int getCrsId(String name){
+        int crsID = 0;
         String selectQuery = "SELECT `id` FROM `courses` WHERE `name`=?";
 
 
@@ -65,7 +65,7 @@ public class Course {
             //insName.add("Hello");
 
             if(rs.next()){
-                crsID = rs.getString(1);
+                crsID = rs.getInt(1);
 
             }
             //con.close();
@@ -80,7 +80,7 @@ public class Course {
 
 
 
-        return  crsID;
+        return crsID;
     }
 
 }
