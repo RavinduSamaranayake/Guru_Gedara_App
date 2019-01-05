@@ -2,6 +2,7 @@ package com.example.user.guruforstudent;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,12 +18,15 @@ import android.widget.Toast;
 import com.example.user.guruforstudent.Models.Course;
 import com.example.user.guruforstudent.Models.Institue;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class viewComments extends AppCompatActivity {
     ListView list_1;
     FloatingActionButton addrevbtn;
     Institue ins;
+    int num_stars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,36 +38,41 @@ public class viewComments extends AppCompatActivity {
         final int stdid = Integer.parseInt(getIntent().getStringExtra("studentId"));
         final int insId = Integer.parseInt(getIntent().getStringExtra("instituteId"));
         List<String> commentList = ins.getComments(insId); //get the comment List...
-        CustomMainList customMainList = new CustomMainList(this,commentList);
+        customCommentList customcommentList = new customCommentList(this,commentList);
 
-        list_1.setAdapter(customMainList); //set the list items for list view
+        list_1.setAdapter(customcommentList); //set the list items for list view
         addrevbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              addNewReviewPg(viewComments.this,stdid,insId);
+                addNewReviewPg(viewComments.this,stdid,insId);
+                //loadnewrev();
             }
         });
 
 
     }
 
-    private void addNewReviewPg(Activity activity, int stdid, int insId) {   //to load to the add review custom layout
+
+
+    public void addNewReviewPg(Activity activity, final int stdid, final int insId) {   //to load to the add review custom layout
         Dialog dialog =new Dialog(activity);
         dialog.setContentView(R.layout.ratings);
         dialog.setTitle("Review Institute");
-        final RatingBar mRatingBar  = (RatingBar) findViewById(R.id.ratingBar);
-        final TextView mRatingScale = (TextView) findViewById(R.id.tvRatingScale);
-        final EditText mFeedback = (EditText) findViewById(R.id.etFeedback);
-        final Button mSendFeedback = (Button) findViewById(R.id.btnSubmit);
+        final RatingBar mRatingBar  =  dialog.findViewById(R.id.ratingBar);
+        final TextView mRatingScale = dialog.findViewById(R.id.tvRatingScale);
+        final EditText mFeedback = dialog.findViewById(R.id.etFeedback);
+        final Button mSendFeedback = dialog.findViewById(R.id.btnSubmit);
+
         //set width of dialog
         int width =(int)(activity.getResources().getDisplayMetrics().widthPixels*0.95);
         //set high of dialog
-        int high =(int)(activity.getResources().getDisplayMetrics().widthPixels*1);
+        int high =(int)(activity.getResources().getDisplayMetrics().widthPixels*1.5);
         dialog.getWindow().setLayout(width,high);
         dialog.show();
         mRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                num_stars = (int) ratingBar.getRating();
                 mRatingScale.setText(String.valueOf(v));
                 switch ((int) ratingBar.getRating()) {
                     case 1:
@@ -90,12 +99,24 @@ public class viewComments extends AppCompatActivity {
         mSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Institue institue = new Institue();
+                String comment = mFeedback.getText().toString();
+
                 if (mFeedback.getText().toString().isEmpty()) {
                     Toast.makeText(viewComments.this, "Please fill in feedback text box", Toast.LENGTH_LONG).show();
                 } else {
                     mFeedback.setText("");
                     mRatingBar.setRating(0);
-                    Toast.makeText(viewComments.this, "Thank you for sharing your feedback", Toast.LENGTH_SHORT).show();
+                    PreparedStatement ps = institue.fillInsRateTable(comment,num_stars,stdid,insId);
+                    try {
+                        if(ps.executeUpdate()>0){
+                            Toast.makeText(viewComments.this, "Thank you for your review", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+
                 }
             }
         });

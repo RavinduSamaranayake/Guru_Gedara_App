@@ -26,38 +26,40 @@ public class rateInstitute extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_institute);
-            std = new Student();
-            tch = new teacher();
-            user =new User();
-            institue = new Institue();
-            int id;
-            int ulevel = user.getCurIdCurLevel(); //check whether the current user level is student or teacher
-            if(ulevel == 4) { //the current user is student
-                id = std.getCurStId();
-                final List<String> insName = std.getAllStRegIns(id); //this make final because use for inner class
-                list_1 = (ListView)findViewById(R.id.rateInslistview);
-                CustomClzList customClzList = new CustomClzList(this,insName);
-                list_1.setAdapter(customClzList);
-                list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(rateInstitute.this,"Rate "+insName.get(position) ,Toast.LENGTH_SHORT).show();
-                        String instname = insName.get(position); //get the institute name using clicked item index for insName list
-                        int insId = institue.getInsId(instname); //to convert to the institute id
-                        int stid = std.getCurStId(); //re get the current student id
-                        openRateg(stid,insId); // to open the rate page
+        std = new Student();
+        tch = new teacher();
+        user =new User();
+        institue = new Institue();
+        int id;
+        int ulevel = user.getCurIdCurLevel(); //check whether the current user level is student or teacher
+        if(ulevel == 4) { //the current user is student
+            id = std.getCurStId();
+            final List<String> insName = std.getAllStRegIns(id); //this make final because use for inner class
+            list_1 = (ListView)findViewById(R.id.rateInslistview);
+            CustomClzList customClzList = new CustomClzList(this,insName);
+            list_1.setAdapter(customClzList);
+            list_1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(rateInstitute.this,"Rate "+insName.get(position) ,Toast.LENGTH_SHORT).show();
+                    String instname = insName.get(position); //get the institute name using clicked item index for insName list
+                    int insId = institue.getInsId(instname); //to convert to the institute id
+                    int stid = std.getCurStId(); //re get the current student id
+                    openRateg(stid,insId); // to open the rate page
 
 
-                    }
-                });
-            }
-
+                }
+            });
         }
+
+    }
 
     private void openRateg(int stid, int insId) {
         Intent intent = new Intent(this, viewComments.class);
-        intent.putExtra("studentId",stid); //to pass to the next page
-        intent.putExtra("instituteId",insId);
+        String stdid = Integer.toString(stid);
+        String instid = Integer.toString(insId);
+        intent.putExtra("studentId",stdid); //to pass to the next page
+        intent.putExtra("instituteId",instid);
         startActivity(intent);
     }
 }

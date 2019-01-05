@@ -28,7 +28,7 @@ public class customCommentList extends ArrayAdapter<String> {
         customCommentList.ViewHolder viewHolder = null;
         if(r==null){
             LayoutInflater layoutInflater = context.getLayoutInflater();
-            r = layoutInflater.inflate(R.layout.listview_clz,null,true);
+            r = layoutInflater.inflate(R.layout.comment_item,null,true);
             viewHolder = new customCommentList.ViewHolder(r);
 
             r.setTag(viewHolder);
@@ -44,7 +44,7 @@ public class customCommentList extends ArrayAdapter<String> {
         TextView tv2;
 
         ViewHolder(View v){
-            tv2 = v.findViewById(R.id.tvClz);
+            tv2 = v.findViewById(R.id.tvcomment);
         }
     }
 }
