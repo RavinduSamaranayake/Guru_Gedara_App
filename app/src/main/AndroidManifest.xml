@@ -23,8 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
-        <activity android:name=".MainList" />
-        <activity android:name=".Auth" />
         <activity android:name=".Institutes" />
         <activity android:name=".classes" />
         <activity android:name=".userRegister" />
